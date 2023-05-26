@@ -1,12 +1,12 @@
 import 'package:city_guide/main_screen.dart' as mainscreen;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '/variables.dart' as variables;
+import '/variables-NewYork.dart' as variables;
 
-class NewYork extends StatelessWidget {
+class Locations extends StatelessWidget {
   final String selectedCategory;
   final String selectedCity;
-  NewYork(
+  const Locations(
       {Key? key, required this.selectedCategory, required this.selectedCity})
       : super(key: key);
 
@@ -14,7 +14,7 @@ class NewYork extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            title: const Text("New York"), backgroundColor: Colors.black),
+            title:  Text("$selectedCategory around you"), backgroundColor: Colors.black),
         body:
             //nested ternary operator
             //if the selected category is Hospitals, call function ShowHospitals
@@ -37,8 +37,13 @@ class NewYork extends StatelessWidget {
     //mapping through each element in the 'hospitals in new york object
     return Column(
       children: variables.hospitalsInNewYork.map((var hospital) {
-        return Row(
-          children: [const Icon(Icons.local_hospital), Text(hospital['name']!)],
+        return Container(
+          margin: const EdgeInsets.only(bottom: 20, top: 40),
+          child: Row(
+            children: [const Icon(Icons.local_hospital),
+              const SizedBox(width: 10),
+              Text(hospital['name']!)],
+          ),
         );
       }).toList(),
     );
@@ -47,8 +52,13 @@ class NewYork extends StatelessWidget {
   Column showHotels() {
     return Column(
       children: variables.hotelsInNewYork.map((var hotel) {
-        return Row(
-          children: [const Icon(Icons.hotel), Text(hotel['name']!)],
+        return Container(
+          margin: const EdgeInsets.only(bottom: 20, top: 40),
+          child: Row(
+            children: [const Icon(Icons.hotel),
+              const SizedBox(width: 10),
+              Text(hotel['name']!)],
+          ),
         );
       }).toList(),
     );
@@ -57,11 +67,15 @@ class NewYork extends StatelessWidget {
   Column showRestaurants() {
     return Column(
       children: variables.restaurantsInNewYork.map((var restaurant) {
-        return Row(
-          children: [
-            const Icon(Icons.restaurant_menu),
-            Text(restaurant['name']!)
-          ],
+        return Container(
+            margin: const EdgeInsets.only(bottom: 20, top: 40),
+          child: Row(
+            children: [
+              const Icon(Icons.restaurant_menu),
+              const SizedBox(width: 10),
+              Text(restaurant['name']!)
+            ],
+          ),
         );
       }).toList(),
     );
@@ -70,8 +84,13 @@ class NewYork extends StatelessWidget {
   Column showMalls() {
     return Column(
       children: variables.shoppingMallsInNewYork.map((var mall) {
-        return Row(
-          children: [const Icon(Icons.local_mall_rounded), Text(mall['name']!)],
+        return Container(
+            margin: const EdgeInsets.only(bottom: 20, top: 40),
+          child: Row(
+            children: [const Icon(Icons.local_mall_rounded),
+              const SizedBox(width: 10),
+              Text(mall['name']!)],
+          ),
         );
       }).toList(),
     );
@@ -80,8 +99,13 @@ class NewYork extends StatelessWidget {
   Column showSportComplexes() {
     return Column(
       children: variables.sportComplexesInNewYork.map((var hospital) {
-        return Row(
-          children: [const Icon(Icons.local_hospital), Text(hospital['name']!)],
+        return Container(
+            margin: const EdgeInsets.only(bottom: 10, top: 40),
+          child: Row(
+            children: [const Icon(Icons.sports_baseball_rounded),
+              const SizedBox(width: 10),
+              Text(hospital['name']!)],
+          ),
         );
       }).toList(),
     );
