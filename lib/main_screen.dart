@@ -1,4 +1,4 @@
-import 'package:city_guide/Locations.dart';
+import 'package:city_guide/CITIES/new_york.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -125,10 +125,13 @@ class _MainPageState extends State<MainPage> {
                     setState(() {
                       Navigator.of(context).push(
                           MaterialPageRoute(builder: (BuildContext context) {
-                        return Locations(
+                        return NewYork(
                             selectedCategory: amenity, selectedCity: city);
                       }));
-                    });
+                    }
+
+                    );
+
                   },
                   style: const ButtonStyle(
                       backgroundColor: MaterialStatePropertyAll(Colors.black)),

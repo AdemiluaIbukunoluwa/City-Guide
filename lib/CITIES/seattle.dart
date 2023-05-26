@@ -1,0 +1,1 @@
+import 'package:city_guide/VARIABLES/variables-Seattle.dart' as seattle_variables;

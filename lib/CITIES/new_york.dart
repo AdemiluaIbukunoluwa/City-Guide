@@ -1,42 +1,61 @@
 import 'package:city_guide/main_screen.dart' as mainscreen;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '/variables-NewYork.dart' as variables;
+import 'package:city_guide/VARIABLES/variables-Boston.dart' as boston_variables;
+import 'package:city_guide/VARIABLES/variables-Houston.dart' as houston_variables;
+import 'package:city_guide/VARIABLES/variables-Miami.dart' as miami_variables;
+import 'package:city_guide/VARIABLES/variables-NewYork.dart' as new_york_variables;
+import 'package:city_guide/VARIABLES/variables-Seattle.dart' as seattle_variables;
 
-class Locations extends StatelessWidget {
+import '../VARIABLES/variables.dart';
+
+class NewYork extends StatefulWidget {
   final String selectedCategory;
   final String selectedCity;
-  const Locations(
+  const NewYork(
       {Key? key, required this.selectedCategory, required this.selectedCity})
       : super(key: key);
+
+  @override
+  State<NewYork> createState() => _NewYorkState();
+
+}
+class _NewYorkState extends State<NewYork> implements CallMethods {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            title:  Text("$selectedCategory around you"), backgroundColor: Colors.black),
+            title:  Text("${widget.selectedCategory} around you"), backgroundColor: Colors.black),
         body:
             //nested ternary operator
             //if the selected category is Hospitals, call function ShowHospitals
-            selectedCategory == "Hospitals"
-                ? showHospitals()
-                : selectedCategory == "Hotels"
-                    ? showHotels()
-                    : selectedCategory == "Restaurants"
-                        ? showRestaurants()
-                        : selectedCategory == "Shopping Malls"
-                            ? showMalls()
-                            : selectedCategory == "Sports Complex"
-                                ? showSportComplexes()
-                                :
-                                //if nothing is selected(not really possible), call doNothing()
-                                doNothing());
+            Column(
+              children: [
+                widget.selectedCategory == "Hospitals"
+                    ? showHospitals()
+                    : widget.selectedCategory == "Hotels"
+                        ? showHotels()
+                        : widget.selectedCategory == "Restaurants"
+                            ? showRestaurants()
+                            : widget.selectedCategory == "Shopping Malls"
+                                ? showMalls()
+                                : widget.selectedCategory == "Sports Complex"
+                                    ? showSportComplexes()
+                                    :
+                                    //if nothing is selected(not really possible), call doNothing()
+                                    doNothing(),
+              ],
+            ));
   }
 
-  Column showHospitals() {
+
+  @override
+   showHospitals() {
     //mapping through each element in the 'hospitals in new york object
-    return Column(
-      children: variables.hospitalsInNewYork.map((var hospital) {
+ return Column(
+     children: new_york_variables.hospitalsInNewYork.map((var hospital)
+                {
         return Container(
           margin: const EdgeInsets.only(bottom: 20, top: 40),
           child: Row(
@@ -49,9 +68,11 @@ class Locations extends StatelessWidget {
     );
   }
 
-  Column showHotels() {
+
+  @override
+   showHotels() {
     return Column(
-      children: variables.hotelsInNewYork.map((var hotel) {
+      children: new_york_variables.hospitalsInNewYork.map((var hotel) {
         return Container(
           margin: const EdgeInsets.only(bottom: 20, top: 40),
           child: Row(
@@ -64,9 +85,10 @@ class Locations extends StatelessWidget {
     );
   }
 
-  Column showRestaurants() {
+  @override
+   showRestaurants() {
     return Column(
-      children: variables.restaurantsInNewYork.map((var restaurant) {
+      children: new_york_variables.restaurantsInNewYork.map((var restaurant) {
         return Container(
             margin: const EdgeInsets.only(bottom: 20, top: 40),
           child: Row(
@@ -81,9 +103,10 @@ class Locations extends StatelessWidget {
     );
   }
 
-  Column showMalls() {
+  @override
+   showMalls() {
     return Column(
-      children: variables.shoppingMallsInNewYork.map((var mall) {
+      children: new_york_variables.shoppingMallsInNewYork.map((var mall) {
         return Container(
             margin: const EdgeInsets.only(bottom: 20, top: 40),
           child: Row(
@@ -96,9 +119,10 @@ class Locations extends StatelessWidget {
     );
   }
 
-  Column showSportComplexes() {
+  @override
+  showSportComplexes() {
     return Column(
-      children: variables.sportComplexesInNewYork.map((var hospital) {
+      children: new_york_variables.sportComplexesInNewYork.map((var hospital) {
         return Container(
             margin: const EdgeInsets.only(bottom: 10, top: 40),
           child: Row(
@@ -111,7 +135,8 @@ class Locations extends StatelessWidget {
     );
   }
 
-  Center doNothing() {
+  @override
+   doNothing() {
     return const Center(
         child: Text(
       "Selection not available",
