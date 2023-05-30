@@ -1,8 +1,9 @@
+import 'package:city_guide/VARIABLES/variables.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:city_guide/VARIABLES/variables-Boston.dart' as boston_variables;
 
-class Boston extends StatefulWidget {
+class Boston extends StatefulWidget{
   final String selectedCategory;
   final String selectedCity;
 
@@ -12,7 +13,7 @@ class Boston extends StatefulWidget {
   State<Boston> createState() => _BostonState();
 }
 
-class _BostonState extends State<Boston> {
+class _BostonState extends State<Boston>  implements CallMethods{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +44,7 @@ class _BostonState extends State<Boston> {
   showHospitals() {
     //mapping through each element in the 'hospitals in new york object
     return Column(
-      children: new_york_variables.hospitalsInNewYork.map((var hospital)
+      children: boston_variables.hospitalsInBoston.map((var hospital)
       {
         return Container(
           margin: const EdgeInsets.only(bottom: 20, top: 40),
@@ -61,7 +62,7 @@ class _BostonState extends State<Boston> {
   @override
   showHotels() {
     return Column(
-      children: new_york_variables.hospitalsInNewYork.map((var hotel) {
+      children: boston_variables.hotelsInBoston.map((var hotel) {
         return Container(
           margin: const EdgeInsets.only(bottom: 20, top: 40),
           child: Row(
@@ -77,7 +78,7 @@ class _BostonState extends State<Boston> {
   @override
   showRestaurants() {
     return Column(
-      children: new_york_variables.restaurantsInNewYork.map((var restaurant) {
+      children: boston_variables.restaurantsInBoston.map((var restaurant) {
         return Container(
           margin: const EdgeInsets.only(bottom: 20, top: 40),
           child: Row(
@@ -95,7 +96,7 @@ class _BostonState extends State<Boston> {
   @override
   showMalls() {
     return Column(
-      children: new_york_variables.shoppingMallsInNewYork.map((var mall) {
+      children: boston_variables.shoppingMallsInBoston.map((var mall) {
         return Container(
           margin: const EdgeInsets.only(bottom: 20, top: 40),
           child: Row(
@@ -111,7 +112,7 @@ class _BostonState extends State<Boston> {
   @override
   showSportComplexes() {
     return Column(
-      children: new_york_variables.sportComplexesInNewYork.map((var hospital) {
+      children: boston_variables.sportComplexesInBoston.map((var hospital) {
         return Container(
           margin: const EdgeInsets.only(bottom: 10, top: 40),
           child: Row(
@@ -133,4 +134,3 @@ class _BostonState extends State<Boston> {
         ));
   }
   }
-}

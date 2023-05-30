@@ -1,11 +1,7 @@
 import 'package:city_guide/main_screen.dart' as mainscreen;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:city_guide/VARIABLES/variables-Boston.dart' as boston_variables;
-import 'package:city_guide/VARIABLES/variables-Houston.dart' as houston_variables;
-import 'package:city_guide/VARIABLES/variables-Miami.dart' as miami_variables;
 import 'package:city_guide/VARIABLES/variables-NewYork.dart' as new_york_variables;
-import 'package:city_guide/VARIABLES/variables-Seattle.dart' as seattle_variables;
 
 import '../VARIABLES/variables.dart';
 
@@ -72,7 +68,7 @@ class _NewYorkState extends State<NewYork> implements CallMethods {
   @override
    showHotels() {
     return Column(
-      children: new_york_variables.hospitalsInNewYork.map((var hotel) {
+      children: new_york_variables.hotelsInNewYork.map((var hotel) {
         return Container(
           margin: const EdgeInsets.only(bottom: 20, top: 40),
           child: Row(

@@ -1,4 +1,8 @@
+import 'package:city_guide/CITIES/boston.dart';
+import 'package:city_guide/CITIES/houston.dart';
+import 'package:city_guide/CITIES/miami.dart';
 import 'package:city_guide/CITIES/new_york.dart';
+import 'package:city_guide/CITIES/seattle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -116,7 +120,6 @@ class _MainPageState extends State<MainPage> {
                 ),
               ],
             ),
-
             //SEARCH
             Container(
               margin: const EdgeInsets.only(top: 50),
@@ -125,8 +128,14 @@ class _MainPageState extends State<MainPage> {
                     setState(() {
                       Navigator.of(context).push(
                           MaterialPageRoute(builder: (BuildContext context) {
-                        return NewYork(
-                            selectedCategory: amenity, selectedCity: city);
+                        return (city == "New York")?NewYork(selectedCategory: amenity, selectedCity: city)
+                        :(city == "Seattle")?Seattle(selectedCategory: amenity, selectedCity: city)
+                            :(city == "Boston")?Boston(selectedCategory: amenity, selectedCity: city)
+                            :(city == "Miami")?Miami(selectedCategory: amenity, selectedCity: city)
+                            :(city == "Houston")?Houston(selectedCategory: amenity, selectedCity: city):
+                            //sized box does nothing basically, to avoid error in else statement
+                          const SizedBox();
+                        ;
                       }));
                     }
 
