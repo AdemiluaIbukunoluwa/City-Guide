@@ -1,8 +1,4 @@
-import 'package:city_guide/CITIES/boston.dart';
-import 'package:city_guide/CITIES/houston.dart';
-import 'package:city_guide/CITIES/miami.dart';
-import 'package:city_guide/CITIES/new_york.dart';
-import 'package:city_guide/CITIES/seattle.dart';
+import 'package:city_guide/ShowPlaces.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -28,125 +24,122 @@ class _MainPageState extends State<MainPage> {
   //to get the text from the search bar
   final keyword = TextEditingController();
 
-  @override
-  void dispose() {
-    // Clean up the controller when the widget is disposed.
-    keyword.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   // Clean up the controller when the widget is disposed.
+  //   keyword.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
             title: const Text("City Guide"), backgroundColor: Colors.black),
-        body: Container(
-          //sets top margin for entire body(container)
-          margin: const EdgeInsets.only(top: 50, left: 20, right: 20),
-          width: 350.0,
-          child: Column(children: <Widget>[
-            //CITIES
-            Container(
-              margin: const EdgeInsets.only(bottom: 40),
-              child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,children: [
-                const Text("CITIES: "),
-                //container around dropdown button to set color
-                Container(
-                  decoration: const BoxDecoration(
-                      color: Color.fromARGB(211, 211, 211, 211)),
-                  child: SizedBox(
-                    //width of dropdown button
-                    width: 170,
-                    child: DropdownButton(
-                      isExpanded: true,
-                        value: city,
-                        dropdownColor: Colors.grey,
-                        items: cities.map((String item) {
-                          return DropdownMenuItem(value: item, child: Text(item));
-                        }).toList(),
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            city = newValue!;
-                          });
-                        }),
-                  ),
-                )
-              ]),
-            ),
-            //CATEGORIES
-            Container(
-              margin: const EdgeInsets.only(bottom: 40),
-              child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly
-                  ,children: [
-                //Text beside dropdown(categories)
-                const Text("CATEGORIES: "),
-                Container(
-                  //adding color for dropdownmenu
-                  decoration: const BoxDecoration(
-                      color: Color.fromARGB(211, 211, 211, 211)),
-                  child: SizedBox(
-                    //width of dropdown button
-                    width: 170,
-                    child: DropdownButton(
-                        value: amenity,
+        body: SizedBox(
+           width: 500,
+          child: Container(
+            //sets top margin for entire body(container)
+            margin: const EdgeInsets.only(top: 50),
+            width: 350.0,
+            child: Column(children: <Widget>[
+              //CITIES
+              Container(
+                margin: const EdgeInsets.only(bottom: 40),
+                child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,children: [
+                  const Text("CITIES:"),
+                  //container around dropdown button to set color
+                  Container(
+                    decoration: const BoxDecoration(
+                        color: Color.fromARGB(211, 211, 211, 211)),
+                    child: SizedBox(
+                      //width of dropdown button
+                      width: 170,
+                      child: DropdownButton(
                         isExpanded: true,
-                        dropdownColor: Colors.grey,
-                        items: amenities.map((String item) {
-                          return DropdownMenuItem(value: item, child: Text(item));
-                        }).toList(),
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            amenity = newValue!;
-                          });
-                        }),
+                          value: city,
+                          dropdownColor: Colors.grey,
+                          items: cities.map((String item) {
+                            return DropdownMenuItem(alignment: Alignment.center,value: item, child: Text(item));
+                          }).toList(),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              city = newValue!;
+                            });
+                          }),
+                    ),
+                  )
+                ]),
+              ),
+              //CATEGORIES
+              Container(
+                margin: const EdgeInsets.only(bottom: 40),
+                child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly
+                    ,children: [
+                  //Text beside dropdown(categories)
+                  const Text("CATEGORIES:"),
+                  Container(
+                    //adding color for dropdownmenu
+                    decoration: const BoxDecoration(
+                        color: Color.fromARGB(211, 211, 211, 211)),
+                    child: SizedBox(
+                      //width of dropdown button
+                      width: 170,
+                      child: DropdownButton(
+                          value: amenity,
+                          isExpanded: true,
+                          dropdownColor: Colors.grey,
+                          items: amenities.map((String item) {
+                            return DropdownMenuItem(alignment: Alignment.center,value: item, child: Text(item));
+                          }).toList(),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              amenity = newValue!;
+                            });
+                          }),
+                    ),
+                  )
+                ]),
+              ),
+
+              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  const Text("SEARCH BY: "),
+                  SizedBox(
+                    width: 170,
+                    height: 40,
+                    child: TextField(
+                        controller: keyword,
+                        decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Color.fromARGB(211, 211, 211, 211),
+                            border: InputBorder.none,
+                            hintText: 'ENTER KEYWORD...')),
                   ),
-                )
-              ]),
-            ),
+                ],
+              ),
+              //SEARCH
+              Container(
+                margin: const EdgeInsets.only(top: 50),
+                child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (BuildContext context) {
+                              return ShowPlaces(selectedCategory: amenity, selectedCity: city)
+                          ;
+                        }));
+                      }
 
-            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                const Text("SEARCH BY: "),
-                SizedBox(
-                  width: 170,
-                  height: 40,
-                  child: TextField(
-                      controller: keyword,
-                      decoration: const InputDecoration(
-                          filled: true,
-                          fillColor: Color.fromARGB(211, 211, 211, 211),
-                          border: InputBorder.none,
-                          hintText: 'ENTER KEYWORD...')),
-                ),
-              ],
-            ),
-            //SEARCH
-            Container(
-              margin: const EdgeInsets.only(top: 50),
-              child: ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (BuildContext context) {
-                        return (city == "New York")?NewYork(selectedCategory: amenity, selectedCity: city)
-                        :(city == "Seattle")?Seattle(selectedCategory: amenity, selectedCity: city)
-                            :(city == "Boston")?Boston(selectedCategory: amenity, selectedCity: city)
-                            :(city == "Miami")?Miami(selectedCategory: amenity, selectedCity: city)
-                            :(city == "Houston")?Houston(selectedCategory: amenity, selectedCity: city):
-                            //sized box does nothing basically, to avoid error in else statement
-                          const SizedBox();
-                        ;
-                      }));
-                    }
+                      );
 
-                    );
-
-                  },
-                  style: const ButtonStyle(
-                      backgroundColor: MaterialStatePropertyAll(Colors.black)),
-                  child: const Text("SEARCH")),
-            )
-          ]),
+                    },
+                    style: const ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(Colors.black)),
+                    child: const Text("SEARCH")),
+              )
+            ]),
+          ),
         ));
   }
 }

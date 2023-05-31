@@ -9,3 +9,10 @@ abstract class CallMethods {
   Center doNothing();
 }
 
+
+// callDetailPage(){
+//   Navigator.of(context)
+//       .push(MaterialPageRoute(builder: (BuildContext context) {
+//     return ShowInfo(hospitalName: hospital['name']);
+//   })
+//   )
