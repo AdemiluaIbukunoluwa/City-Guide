@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+//final page => displays name, image and address of a particular location
 class ShowInfo extends StatefulWidget {
-  final String? name;
-  final String? imageurl;
-  final String? address;
-  final String? mobile;
+   String? name;
+   String? imageurl;
+   String? address;
+   String? mobile;
    ShowInfo({Key? key, this.name, this.imageurl, this.address, this.mobile})
        : super(key: key);
-
   @override
   State<ShowInfo> createState() => _ShowInfoState();
 }
@@ -21,14 +21,14 @@ class _ShowInfoState extends State<ShowInfo> {
     String address = widget.address.toString();
     String mobile = widget.mobile.toString();
     return Scaffold(
-      appBar: AppBar(title: Text(widget.name.toString()),
+      appBar: AppBar(title: Text(name),
           toolbarHeight: 100, backgroundColor: Colors.white,
           foregroundColor: Colors.black),
       body: Container(
         margin: EdgeInsets.only(top: 40),
         child: Column(
           children: [
-            Image(image: NetworkImage(imageurl),
+            Image(image: AssetImage(imageurl),
             alignment: Alignment.center,width: double.infinity,
               height: 250,fit: BoxFit.fill,),
           Container(
